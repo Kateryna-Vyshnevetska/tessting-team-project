@@ -1,4 +1,5 @@
 import usersTpl from "../templates/users.hbs";
+import usersLogTpl from "../templates/login.hbs";
 
 const refs = {
   userList: document.querySelector(".user-wrapper"),
@@ -8,7 +9,6 @@ export const fetchUser = async () => {
   try {
     const response = await fetch(url);
     const data = await response.json();
-    console.log(data.results);
     return data.results;
   } catch {}
 };
@@ -17,20 +17,24 @@ function createMarkup() {
   fetchUser().then((elem) => {
     refs.userList.innerHTML = usersTpl(elem);
     getUserLogin(elem);
-  });
+});
 }
 function getUserLogin(arr) {
-  const userForm = document.querySelector(".user-form");
-  const loginInput = document.querySelector(".user-input");
-  const loginBtn = document.querySelector(".login-button");
-  console.log(userForm);
+    const userForm = document.querySelector(".user-form");
+    let currentPass;
+    arr.forEach(pass => currentPass=pass.login.password);
 
   function checkUser(e) {
     e.preventDefault();
-    console.log(e.target);
+    if(e.target.userPass.value === currentPass){
+        refs.userList.insertAdjacentHTML('beforeend', usersLogTpl(arr))
+    }else{
+        alert('Wrong password')
+    }
+    
+
   }
 
-  //    loginInput.addEventListener('input', checkUser)
   userForm.addEventListener("submit", checkUser);
 }
 
