@@ -1,5 +1,6 @@
 // IMPORT LIKE THIS
-import './js/flights.js';
+import "./js/flights.js";
+import "./js/restaurants.js";
 import './js/randomize';
 import { fetchUser } from './js/randomize';
 import './styles.css'
