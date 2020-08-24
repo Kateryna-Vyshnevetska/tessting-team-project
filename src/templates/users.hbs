@@ -1,0 +1,14 @@
+{{#each this}}
+<h2 class="user-tittle">{{name.title}} {{name.first}} {{name.last}}</h2>
+<ul class="user-list">
+<li class="user-item">Age: {{dob.age}}</li>
+<li class="user-item">Gender: {{gender}}</li>
+<li class="user-item">Username:{{login.username}}</li>
+</ul>
+<form class="user-form" action="#">
+    <input type="text" class="user-input" name="userPass" placeholder="Enter your password">
+    <button type="submit" class="login-button">Login</button>
+</form>
+{{/each}}
+
+
